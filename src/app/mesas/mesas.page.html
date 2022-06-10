@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="irAtras()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Pedido de la mesa {{mesa?.noMesa}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-button expand="block" size="default" fill="clear"  (click)="editarPedido()">
+    Editar pedido
+    <ion-icon name="pencil"></ion-icon>
+  </ion-button>
+  <div>
+    <ion-card-header>
+      <ion-card-title>
+        <div style="text-align: center;">
+          <div *ngIf="mesa?.personas>1">{{mesa?.personas}} personas</div>
+          <div *ngIf="mesa?.personas==1">{{mesa?.personas}} persona</div>
+        </div>
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+
+      <div style="text-align: center;">
+        <form [formGroup]="form" novalidate>
+          <ion-list>
+          <!-- <ion-radio-group allow-empty-selection="true" name="EstadoPedido"  value="EstadoPedido" formControlName = "EstadoPedido" (ionChange)="radioGroupChange($event)" #radioGroup> -->
+          <ion-radio-group allow-empty-selection="true" name="EstadoPedido"  (ionChange)="radioGroupChange($event)" #radioGroup>
+            <ion-list-header>
+              <ion-label>Estado del Pedido</ion-label>
+            </ion-list-header>
+
+            <ion-item *ngFor="let item of radio_list" (ionSelect)="radioSelect($event)">
+              <ion-label>{{item.text}}</ion-label>
+
+              <ion-radio slot="start"  name="{{item.name}}" value="{{item.value}}"
+                color="{{item.color}}" disabled="{{item.disabled}}"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+        </ion-list>
+      </form>
+      </div>
+      <div class="ion-padding">
+        <div style="text-align: center;">
+            Detalles del pedido
+        </div>
+        <ion-list>
+          <ion-item *ngFor="let p of pedidos" class="ion-text-wrap">
+            <ion-grid>
+              <ion-row>
+                <ion-col size="9">
+                  <b>{{p?.plato}} ({{p?.cantidad}})</b>
+                </ion-col>
+                <ion-col size="3" class="ion-text-end">
+                  {{p?.cantidad * p?.precio | currency: 'EUR'}}
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+          <ion-item>
+            <ion-grid>
+              <ion-row>
+                <ion-col size="9"> Total: </ion-col>
+                <ion-col size="3" class="ion-text-end">
+                  {{getTotal() | currency: 'EUR'}}
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+        </ion-list>
+        <ion-button expand="full" color="danger" [disabled] = "pedidos?.length == 0" (click)="cerrarPedido()">Cerrar pedido</ion-button>
+      </div>
+    </ion-card-content>
+  </div>
+</ion-content>

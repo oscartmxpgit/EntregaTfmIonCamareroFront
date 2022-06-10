@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Pedidos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ng-container *ngIf="mesas==undefined || mesas.length==0; else mesasExistentes">
+    Primero debes
+    <a routerLink="/mesas-config">crear mesas</a>
+  </ng-container>
+  <ng-template #mesasExistentes>
+  <ion-card *ngFor="let mesa of mesas" button (click)="abrirMesa(mesa.idMesa)">
+    <div>
+      <ion-card-header>
+        <ion-card-title>
+          <ion-grid>
+            <ion-row>
+              <ion-col >
+                <div style="padding-left: 30px;">
+                  Mesa {{mesa.noMesa}}
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content >
+
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                  {{mesa.personas}} personas
+              </ion-item>
+            </ion-col>
+            <ion-col>
+              <div style="text-align:right" >{{estadoPedido(mesa.estadoPedido)}}</div>
+
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+
+      </ion-card-content>
+    </div>
+  </ion-card>
+</ng-template>
+</ion-content>

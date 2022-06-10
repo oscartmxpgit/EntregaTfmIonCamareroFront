@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Contacto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+  <form [formGroup]="formData" novalidate (ngSubmit)="onSubmit()">
+  <ion-item lines="full">
+    <ion-label position="floating">Nombre</ion-label>
+    <ion-input type="text" name="Fullname" formControlName="Fullname" required></ion-input>
+  </ion-item>
+  <span class="error ion-padding" *ngIf="(formData.controls.Fullname.dirty ) && errorControl.Fullname.errors?.minlength">
+    Déjanos saber tu nombre (mínimo 3 caracteres) 😊.
+  </span>
+  <ion-item lines="full">
+    <ion-label position="floating">Email</ion-label>
+    <ion-input type="email" name="Email" formControlName="Email" required></ion-input>
+  </ion-item>
+  <ion-item lines="full">
+    <ion-label position="floating">Comentario</ion-label>
+    <ion-input type="text" name="Comment" formControlName="Comment" required></ion-input>
+  </ion-item>
+  <ion-row>
+    <ion-col>
+      <ion-button  [disabled]= "!(formData.valid)" type="submit" expand="block">Enviar correo
+      <ion-icon slot="start" name="mail-outline"></ion-icon>
+    </ion-button>
+    </ion-col>
+  </ion-row>
+</form>
+<ion-grid>
+  <ion-row class="ion-align-items-center center">
+
+        <ion-button color="success" (click)="ShareWhatsapp()">Comparte con tus amigos
+          <ion-icon slot="start" name="logo-whatsapp"></ion-icon>
+        </ion-button>
+
+  </ion-row>
+
+  <ion-row class="ion-align-items-center center">
+    <br /><br /><br /><b>©&nbsp;</b>Oscar Trujillo Morales.
+  </ion-row>
+
+</ion-grid>
+
+
+</ion-content>

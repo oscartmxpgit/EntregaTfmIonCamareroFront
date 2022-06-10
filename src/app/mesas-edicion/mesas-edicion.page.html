@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="irAtras()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{headerMsg}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="formData" novalidate (ngSubmit)="onSubmit()">
+    <ion-item lines="full">
+      <ion-label position="floating">Personas</ion-label>
+      <ion-input type="text" name="Personas" formControlName="Personas" required></ion-input>
+    </ion-item>
+    <span class="error ion-padding" *ngIf="(formData.controls.Personas.dirty ) && errorControl.Personas.errors?.minlength">
+      Por favor, escribe una cantidad de personas para la mesa (1-9)
+    </span>
+    <ion-item lines="full">
+      <ion-label position="floating">Comentario</ion-label>
+      <ion-input type="cc-number" name="Comentario" formControlName="Comentario"></ion-input>
+    </ion-item>
+    <ion-row>
+      <ion-col>
+        <ion-button [disabled]= "!(formData.valid)" type="submit" expand="block">Guardar</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>

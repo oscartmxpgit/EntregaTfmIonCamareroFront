@@ -1,0 +1,12 @@
+ion-card {
+  padding: 20px;
+}
+
+.full-image {
+  max-height: 20ch;
+  filter: blur(0.1px); /* Adding blur background image */
+}
+
+.card-description {
+  text-align: center;
+}

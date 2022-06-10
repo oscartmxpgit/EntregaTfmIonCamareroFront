@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar >
+    <ion-buttons slot="start">
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+    </ion-buttons>
+    <ion-title>Editar platos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-button expand="block" size="default" fill="clear" (click)="crearPlato()"> Nuevo Plato
+    <ion-icon slot="start" name="create"></ion-icon>
+  </ion-button>
+  <ion-card *ngFor="let p of platos">
+    <ion-grid>
+     <ion-row>
+      <ion-col>
+        <ng-container *ngIf="p?.tipo==1; else drinkImg">
+          <img class="full-image" src="assets/img/foodbackgr.png"/>
+        </ng-container>
+        <ng-template #drinkImg>
+          <img class="full-image" src="assets/img/drinkbackgr.png"/>
+        </ng-template>
+    </ion-col>
+    <ion-col size="10" offset-xs="0">
+    <ion-item>
+      <!-- <ion-avatar item-start>
+        <img class="full-image" src="assets/img/waiterbackgr.png"/>
+      </ion-avatar> -->
+      <h2>{{p.nombre}}</h2>
+    </ion-item>
+    <ion-card-content>
+      <p><b>{{p.precio | currency:'EUR'}}</b></p>
+      <div style="text-align:right">
+        <ion-button fill="clear" (click)="editarPlato(p.idPlato)">
+          <ion-icon style="zoom: 1.5" name="pencil"></ion-icon>
+        </ion-button>
+        <ion-button fill="clear" (click)="eliminarPlato(p)">
+          <ion-icon style="zoom: 1.5" name="trash"></ion-icon>
+        </ion-button>
+      </div>
+    </ion-card-content>
+    </ion-col>
+     </ion-row>
+    </ion-grid>
+
+  </ion-card>
+
+</ion-content>
