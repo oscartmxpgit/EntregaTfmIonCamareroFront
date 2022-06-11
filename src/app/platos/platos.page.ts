@@ -19,7 +19,7 @@ export class PlatosPage implements OnInit {
   platos:Plato[] =[];
   mesa: Mesa;
 
-  @ViewChild('cart', {static: false, read: ElementRef})fab: ElementRef;
+  @ViewChild('botonPedido', {static: false, read: ElementRef})fab: ElementRef;
 
   constructor(
     private pedidoService: PedidoService,
@@ -67,7 +67,7 @@ export class PlatosPage implements OnInit {
     this.pedidoService.storeMesaPedido(this.mesa);
   }
 
-  async addToPedido(plato) {
+  async addToListaPedido(plato) {
     var pedido: Pedido={
       idMesa:this.mesa.idMesa,
       idEmpleado:parseInt(this.auth.getIdEmpleado()),
@@ -85,12 +85,7 @@ export class PlatosPage implements OnInit {
 
   }
 
-  addToCart(plato) {
-    this.animateCSS('tada');
-    this.pedidoService.addPedido(this.mesa, plato);
-  }
-
-  async openCart() {
+  async openPedidoModal() {
     this.animateCSS('bounceOutLeft', true);
     const modal = await this.modalCtrl.create({
       component: PedidoModalPage,

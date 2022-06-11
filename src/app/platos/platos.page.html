@@ -13,8 +13,8 @@
 
 <ion-content [fullscreen]="true">
   <ion-fab vertical="top" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="openCart()" #cart>
-      <ion-icon name="create" class="cart-icon"></ion-icon>
+    <ion-fab-button (click)="openPedidoModal()" #botonPedido>
+      <ion-icon name="create" class="botonPedido-icon"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 
@@ -23,7 +23,7 @@
     <a routerLink="/platos-config">crear platos</a>
   </ng-container>
   <ng-template #platosExistentes>
-  <ion-card *ngFor="let p of platos" button (click)="addToPedido(p)">
+  <ion-card *ngFor="let p of platos" button (click)="addToListaPedido(p)">
     <ion-card-header>
       <ion-card-title>{{p?.nombre}}</ion-card-title>
     </ion-card-header>

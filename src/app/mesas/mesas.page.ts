@@ -181,7 +181,7 @@ export class MesasPage implements OnInit {
     }
     this.mesa.pedidos.forEach(p => {
       //var opCaja={operacion:p.nombre, importe:p.precio, cantidad:p.cantidad};
-      var now=new Date().toLocaleString();
+      var now=new Date().toISOString();
       var opCaja={operacion:"Plato pagado",
         producto:p.plato,
         importe:p.precio,
