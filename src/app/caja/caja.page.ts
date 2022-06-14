@@ -41,7 +41,7 @@ export class CajaPage implements OnInit {
 
   limpiarCaja(){
     this.alertController.create({
-      header: 'Confirm Alert',
+      header: 'Confirmar',
       message: '¿Está seguro que desea limpiar la caja?',
       buttons: [
         {

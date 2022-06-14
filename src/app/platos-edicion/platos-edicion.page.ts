@@ -35,7 +35,7 @@ export class PlatosEdicionPage implements OnInit {
             if (plato.idPlato == params['id'] as number) {
               this.plato = plato;
               this.formData = this.builder.group({
-                Nombre: new FormControl(this.plato?.nombre, [Validators.required, Validators.minLength(3),Validators.maxLength(30), ]),
+                Nombre: new FormControl(this.plato?.nombre, [Validators.required, Validators.minLength(3),Validators.maxLength(5000), ]),
                 Precio: new FormControl(this.plato?.precio, [Validators.compose([Validators.required,Validators.pattern('^(([0-9]*)|(([0-9]*)\.([0-9]*)))$'),])]),
                 Cantidad: new FormControl(this.plato?.stock, [Validators.required,Validators.pattern('^(0|[0-9]*)$'),]),
                 RadioGroup: new FormControl(this.plato?.tipo, [Validators.required])
@@ -117,7 +117,7 @@ export class PlatosEdicionPage implements OnInit {
   ngOnInit() {
     if (this.editionMode){
       this.formData = this.builder.group({
-        Nombre: new FormControl(this.plato?.nombre, [Validators.required, Validators.minLength(3),Validators.maxLength(30), ]),
+        Nombre: new FormControl(this.plato?.nombre, [Validators.required, Validators.minLength(3),Validators.maxLength(500), ]),
         Precio: new FormControl(this.plato?.precio, [Validators.compose([Validators.required,Validators.pattern('^(([0-9]*)|(([0-9]*)\.([0-9]*)))$'),])]),
         Cantidad: new FormControl(this.plato?.stock, [Validators.required,Validators.pattern('^(0|[0-9]*)$'),]),
         RadioGroup: new FormControl(this.plato?.tipo, [Validators.required])
@@ -125,7 +125,7 @@ export class PlatosEdicionPage implements OnInit {
     }
     else{
       this.formData = this.builder.group({
-        Nombre: new FormControl('', [Validators.required, Validators.minLength(3),Validators.maxLength(30), ]),
+        Nombre: new FormControl('', [Validators.required, Validators.minLength(3),Validators.maxLength(500), ]),
         Precio: new FormControl('', [Validators.compose([Validators.required,Validators.pattern('^(([0-9]*)|(([0-9]*)\.([0-9]*)))$'),])]),
         Cantidad: new FormControl('', [Validators.required,Validators.pattern('^(0|[0-9]*)$'),]),
         RadioGroup: new FormControl('', [Validators.required])

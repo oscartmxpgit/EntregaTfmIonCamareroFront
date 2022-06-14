@@ -130,7 +130,7 @@ export class MesasPage implements OnInit {
 
   cerrarPedido() {
     this.alertController.create({
-      header: 'Confirm Alert',
+      header: 'Confirmar',
       message: '¿Está seguro que desea limpiar la caja?',
       buttons: [
         {
